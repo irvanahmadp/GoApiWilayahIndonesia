@@ -24,7 +24,7 @@ func HandleError(w http.ResponseWriter, errText error) {
 			err = os.MkdirAll(filePath, os.ModePerm)
 			if err != nil {
 				log.Println("error creating directory: ", err.Error())
-			} else{
+			} else {
 				log.Println("directory created")
 				file, _ = os.OpenFile(fullFilePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 				defer file.Close()

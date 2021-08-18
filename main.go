@@ -1,9 +1,12 @@
 package main
 
 import (
-	"./app"
 	"log"
 	"net/http"
+
+	_ "github.com/go-sql-driver/mysql"
+
+	"./app"
 )
 
 func main() {
@@ -13,5 +16,6 @@ func main() {
 	http.HandleFunc("/kecamatan/", app.Kecamatan)
 	http.HandleFunc("/kelurahan/", app.Kelurahan)
 	http.HandleFunc("/data-wilayah/", app.Wilayah)
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
