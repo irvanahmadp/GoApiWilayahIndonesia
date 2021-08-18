@@ -6,7 +6,7 @@ Untuk menjalankan REST API:
 
 1. Import database dari folder db_example.
 2. Setting username, password, server database di `helper/database.go`.
-3. Jalankan aplikasi dengan perintah `go run main.go` atau build aplikasi `go build main.go` dan jalankan hasil build.
+3. Jalankan aplikasi dengan perintah `go run main.go` atau build aplikasi dengan perintah `go build main.go` dan jalankan hasil build.
 
 ## Menjalankan Aplikasi
 
