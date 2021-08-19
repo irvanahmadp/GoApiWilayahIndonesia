@@ -1,9 +1,10 @@
 package app
 
 import (
-	"../helper"
 	"net/http"
 	"strconv"
+
+	"../helper"
 )
 
 type DataWilayahDetail struct {
@@ -18,10 +19,10 @@ type DataWilayahDetail struct {
 }
 
 type DataWilayah struct {
-	Id      int               `json:"id"`
-	Wilayah string            `json:"wilayah"`
-	Nama    string            `json:"nama"`
-	Rincian DataWilayahDetail `json:"rincian,omitempty"`
+	Id       int               `json:"id"`
+	Kategori string            `json:"kategori"`
+	Nama     string            `json:"nama"`
+	Rincian  DataWilayahDetail `json:"rincian,omitempty"`
 }
 
 func Wilayah(w http.ResponseWriter, r *http.Request) {
@@ -33,13 +34,13 @@ func Wilayah(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	urlQuery := r.URL.Query()
-	wilayah := urlQuery.Get("wilayah")
+	kategori := urlQuery.Get("kategori")
 	wilayahId, _ := strconv.Atoi(urlQuery.Get("id"))
 
 	selectQuery := ""
-	if wilayah == "provinsi" {
+	if kategori == "provinsi" {
 		selectQuery = "SELECT id AS provinsi_id, nama as provinsi_nama from provinsi where id = ? "
-	} else if wilayah == "kabupaten" {
+	} else if kategori == "kabupaten" {
 		selectQuery =
 			`SELECT prov.id AS provinsi_id, prov.nama AS provinsi_nama,
 				kab.id AS kabupaten_id, kab.nama AS kabupaten_nama
@@ -47,7 +48,7 @@ func Wilayah(w http.ResponseWriter, r *http.Request) {
 			INNER JOIN kabupaten kab
 				ON prov.id = kab.provinsi_id
 			WHERE kab.id = ?`
-	} else if wilayah == "kecamatan" {
+	} else if kategori == "kecamatan" {
 		selectQuery =
 			`SELECT prov.id AS provinsi_id, prov.nama AS provinsi_nama,
 				kab.id AS kabupaten_id, kab.nama AS kabupaten_nama,
@@ -58,7 +59,7 @@ func Wilayah(w http.ResponseWriter, r *http.Request) {
 			INNER JOIN kecamatan kec
 				ON kab.id = kec.kabupaten_id
 			WHERE kec.id = ?`
-	} else if wilayah == "kelurahan" {
+	} else if kategori == "kelurahan" {
 		selectQuery =
 			`SELECT prov.id AS provinsi_id, prov.nama AS provinsi_nama,
 				kab.id AS kabupaten_id, kab.nama AS kabupaten_nama,
@@ -94,11 +95,12 @@ func Wilayah(w http.ResponseWriter, r *http.Request) {
 	}
 
 	dataWilayah := DataWilayah{
-		Id:      wilayahId,
-		Wilayah: wilayah,
-		Rincian: dataWilayahDetail,
+		Id:       wilayahId,
+		Kategori: kategori,
+		Rincian:  dataWilayahDetail,
 	}
-	switch wilayah {
+
+	switch kategori {
 	case "provinsi":
 		dataWilayah.Nama = dataWilayahDetail.Provinsi_nama
 	case "kabupaten":

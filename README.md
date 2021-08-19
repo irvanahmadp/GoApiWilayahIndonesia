@@ -119,7 +119,7 @@ Response
 
 Request
 
-`GET /data-wilayah/?wilayah=<kategori_wilayah>&id=<wilayah_id>`
+`GET /data-wilayah/?kategori=<kategori_wilayah>&id=<wilayah_id>`
 
 Response
 
@@ -130,7 +130,7 @@ Response
   "pesan": "",
   "data": {
     "id": 1101010001,
-    "wilayah": "kelurahan",
+    "kategori": "kelurahan",
     "nama": "LATIUNG",
     "rincian": {
       "provinsi_id": 11,
