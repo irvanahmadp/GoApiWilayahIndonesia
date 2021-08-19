@@ -22,7 +22,7 @@ go build main.go
 
 ## Rest API
 
-Contoh request dan response dari REST API ada di bawah.
+Berikut contoh request dan response.
 
 ### Daftar Provinsi
 
@@ -112,5 +112,36 @@ Response
          "nama":"LATIUNG"
       }
    ]
+}
+```
+
+### Data Wilayah
+
+Request
+
+`GET /data-wilayah/?wilayah=<kategori_wilayah>&id=<id_wilayah>`
+
+Response
+
+```json
+{
+  "result": 200,
+  "status": "success",
+  "pesan": "",
+  "data": {
+    "id": 1101010001,
+    "wilayah": "kelurahan",
+    "nama": "LATIUNG",
+    "rincian": {
+      "provinsi_id": 11,
+      "provinsi_nama": "ACEH",
+      "kabupaten_id": 1101,
+      "kabupaten_nama": "KABUPATEN SIMEULUE",
+      "kecamatan_id": 1101010,
+      "kecamatan_nama": "TEUPAH SELATAN",
+      "kelurahan_id": 1101010001,
+      "kelurahan_nama": "LATIUNG"
+    }
+  }
 }
 ```
