@@ -119,7 +119,7 @@ Response
 
 Request
 
-`GET /data-wilayah/?wilayah=<kategori_wilayah>&id=<id_wilayah>`
+`GET /data-wilayah/?wilayah=<kategori_wilayah>&id=<wilayah_id>`
 
 Response
 
